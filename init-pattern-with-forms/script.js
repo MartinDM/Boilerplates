@@ -25,29 +25,58 @@ var FormDemoProject = {
             }
             }
         })
+
+        $.validator.addMethod( "pattern", function( value, element, param ) {
+            if ( this.optional( element ) ) {
+                return true;
+            }
+            if ( typeof param === "string" ) {
+                param = new RegExp( "^(?:" + param + ")$" );
+            }
+            return param.test( value );
+        }, "Invalid format." )
+
+        $.validator.addMethod( "strongPassword", function( value, element) {
+            var param = new RegExp("(?=.*[0-9])");
+            console.log(this) 
+            if ( this.optional( element ) ) {
+                return true
+            } else {
+                return value.match(param)
+            } 
+        }, "Password must contain at least one number" )
+
     
         $('#user-form').validate({ 
-            rules: {
-                email: {
-                    required: true,
-                },
+            rules: { 
                 name: {
                     required: true
                 },
+                email: {
+                    required: true,
+                },
                 color: {
                     required: true
+                },
+                password: {
+                    required: true,
+                    strongPassword: true
+                },
+                password2: {
+                    required: true,
+                    equalTo: "#password"
                 },
                 terms: {
                     required: true
                 }
             },
-            messages: {
-                email: {
-                    required: 'please enter an email address',
-                    email: 'please enter a valid one',
-                },
+            messages: { 
                 name: {
                     required: 'please enter your name'
+                },
+                email: {
+                    required: 'please enter an email address',
+                    email: 'please enter a valid email',
                 },
                 terms: {
                     required: 'Do accept our terms please!'
