@@ -2,9 +2,7 @@
 
 Useful snippets and starter files:  
 
-- JS Module patern and initialise methods by 'view'
-- form validation
-- Bootstrap forms
-
-Gists:
-https://gist.github.com/MartinDM
+### Module Pattern and Bootstrap Form
+- JS Module pattern and
+- Bootstrap form with jQuery validate
+- Module pattern - initialise methods by 'view'
